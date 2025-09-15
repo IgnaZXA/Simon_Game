@@ -61,6 +61,7 @@ function App() {
   const initGame = () => {
     randomNumber();
     setIsGameOn(true);
+    console.log(`The value of isAllowedToPlay is: ${isAllowedToPlay}`);
   }
 
   const randomNumber = () => {
@@ -129,13 +130,13 @@ function App() {
   useEffect(() => {
     if (!isAllowedToPlay) {
       sequence.map((item, index) => {
-        setTimeout(setTimeout(() => {
+        setTimeout(() => {
           play({ id: colors[item].sound });
           colors[item].ref.current.style.opacity = (1);
           setTimeout(() => {
             colors[item].ref.current.style.opacity = (0.5);
-          }, speed * index)
-        }), speed * index);
+          }, speed / 2)
+        }, speed * index);
       });
     }
     setIsAllowedToPlay(true);
